@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/navigation"
+    app:startDestination="@id/login">
+
+    <fragment
+        android:id="@+id/login"
+        android:name="com.example.gocart.ui.registration.Login"
+        android:label="fragment_login"
+        tools:layout="@layout/fragment_login" >
+        <action
+            android:id="@+id/action_login_to_signup"
+            app:destination="@id/signup" />
+        <action
+            android:id="@+id/action_login_to_displayFragment"
+            app:destination="@id/displayFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/signup"
+        android:name="com.example.gocart.ui.registration.Signup"
+        android:label="fragment_signup"
+        tools:layout="@layout/fragment_signup" >
+        <action
+            android:id="@+id/action_signup_to_login"
+            app:destination="@id/login" />
+        <action
+            android:id="@+id/action_signup_to_displayFragment"
+            app:destination="@id/displayFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/displayFragment"
+        android:name="com.example.gocart.ui.DisplayFragment"
+        android:label="DisplayFragment" >
+        <action
+            android:id="@+id/action_displayFragment_to_sportsFragment"
+            app:destination="@id/sportsFragment" />
+        <action
+            android:id="@+id/action_displayFragment_to_clothesFragment"
+            app:destination="@id/clothesFragment" />
+        <action
+            android:id="@+id/action_displayFragment_to_electrionicsFragment"
+            app:destination="@id/electrionicsFragment"
+            app:popUpTo="@id/categoriesFragment2"
+            app:popUpToInclusive="true"/>
+        <action
+            android:id="@+id/action_displayFragment_to_lightingFragment"
+            app:destination="@id/lightingFragment" />
+        <action
+            android:id="@+id/action_displayFragment_to_login"
+            app:destination="@id/login" />
+    </fragment>
+    <fragment
+        android:id="@+id/sportsFragment"
+        android:name="com.example.gocart.ui.SportsFragment"
+        android:label="SportsFragment" >
+        <action
+            android:id="@+id/action_sportsFragment_to_displayFragment"
+            app:destination="@id/displayFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/clothesFragment"
+        android:name="com.example.gocart.ui.ClothesFragment"
+        android:label="ClothesFragment" >
+        <action
+            android:id="@+id/action_clothesFragment_to_displayFragment"
+            app:destination="@id/displayFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/electrionicsFragment"
+        android:name="com.example.gocart.ui.ElectrionicsFragment"
+        android:label="ElectrionicsFragment" >
+        <action
+            android:id="@+id/action_electrionicsFragment_to_displayFragment"
+            app:destination="@id/displayFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/lightingFragment"
+        android:name="com.example.gocart.ui.LightingFragment"
+        android:label="LightingFragment" >
+        <action
+            android:id="@+id/action_lightingFragment_to_displayFragment"
+            app:destination="@id/displayFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/categoriesFragment2"
+        android:name="com.example.gocart.ui.CategoriesFragment"
+        android:label="CategoriesFragment" />
+</navigation>

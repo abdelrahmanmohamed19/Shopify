@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8"?>
+    <layout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools">
+
+        <data>
+
+        </data>
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/_16sdp">
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/cardview"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_110sdp"
+                android:layout_marginLeft="@dimen/_8sdp"
+                android:layout_marginRight="@dimen/_8sdp"
+                android:backgroundTint="@color/white"
+                app:cardCornerRadius="@dimen/_24sdp"
+                android:elevation="@dimen/_80sdp"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintStart_toStartOf="parent">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <TextView
+                        android:id="@+id/name"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        tools:text="Item : Kingston A400 Internal SSD 2.5\ 240GB SATA 3 - SA400S37/240G"
+                        android:textColor="@color/main"
+                        android:textSize="@dimen/_15ssp"
+                        android:fontFamily="@font/roboto_bold"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintLeft_toLeftOf="parent"
+                        android:layout_marginTop="@dimen/_12sdp"
+                        android:layout_marginLeft="@dimen/_8sdp"/>
+
+                    <TextView
+                        android:id="@+id/price"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/_8sdp"
+                        android:layout_marginHorizontal="@dimen/_8sdp"
+                        tools:text="Price : 25000 EG"
+                        android:textSize="@dimen/_15sdp"
+                        android:textColor="@color/black"
+                        android:fontFamily="@font/roboto_bold"
+                        app:layout_constraintTop_toBottomOf="@id/name"
+                        app:layout_constraintStart_toStartOf="parent"/>
+
+                    <TextView
+                        android:id="@+id/quantity"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/_4sdp"
+                        android:textColor="@color/discount"
+                        android:textSize="@dimen/_14sdp"
+                        android:fontFamily="@font/roboto_bold"
+                        app:layout_constraintTop_toBottomOf="@id/price"
+                        app:layout_constraintStart_toStartOf="@id/price"
+                        tools:text="Quantity : 1" />
+
+                    <TextView
+                        android:id="@+id/cart"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        app:layout_constraintRight_toRightOf="parent"
+                        android:layout_marginTop="@dimen/_16sdp"
+                        app:layout_constraintTop_toTopOf="@id/price"
+                        android:drawableStart="@drawable/baseline_delete_24"
+                        android:layout_marginRight="@dimen/_8sdp"
+                        android:drawableTint="@color/main"/>
+                    <TextView
+                        android:id="@+id/id"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        app:layout_constraintRight_toRightOf="parent"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        android:layout_marginRight="@dimen/_20sdp"
+                        android:layout_marginBottom="@dimen/_35sdp"
+                        android:textColor="@color/black"
+                        android:textSize="0sp"
+                        tools:text="52"/>
+
+
+
+
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+            </androidx.cardview.widget.CardView>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </layout>
