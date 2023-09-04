@@ -35,3 +35,17 @@ Shopify app for online shopping with a user-friendly interface.
 📚 Live Data
 <br>
 📚 Glide
+
+
+## $\color{#4203c9}{📷 Screenshots}$
+
+<div style="display: flex; justify-content: center;">
+  <img src="https://github.com/abdelrahmanmohamed19/Shopify/assets/61879243/0d32b8d2-eef5-4e64-8f02-b6c3527781b9" width="200" hspace="10" vspace="10">
+  <img src="https://github.com/abdelrahmanmohamed19/Shopify/assets/61879243/5afe4d81-2a7f-4a83-b892-dd3bd1535442" width="200" hspace="10" vspace="10">
+  <img src="https://github.com/abdelrahmanmohamed19/Shopify/assets/61879243/f799bece-51e7-46d6-81d2-4ffdb2e2397b" width="200" hspace="10" vspace="10">
+  <img src="https://github.com/abdelrahmanmohamed19/Shopify/assets/61879243/38d105b3-1b4d-45f8-83ad-db3d8ebac63b" width="200" hspace="10" vspace="10">
+  <img src="https://github.com/abdelrahmanmohamed19/Shopify/assets/61879243/51df4cf2-2cbd-40ae-9eb3-d6f454683abe" width="200" hspace="10" vspace="10">
+  <img src="https://github.com/abdelrahmanmohamed19/Shopify/assets/61879243/99a6a020-4c09-436f-b5b1-15723e254d18" width="200" hspace="10" vspace="10">
+  <img src="https://github.com/abdelrahmanmohamed19/Shopify/assets/61879243/5cc0a0cb-1a29-4ff2-9375-0b797a9420da" width="200" hspace="10" vspace="10">
+  <img src="https://github.com/abdelrahmanmohamed19/Shopify/assets/61879243/e692b42a-daf1-4171-915d-ee0b04ecf140" width="200" hspace="10" vspace="10">
+</div>
