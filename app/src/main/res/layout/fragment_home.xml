@@ -13,40 +13,96 @@
         tools:context=".presentation.home.HomeFragment"
         android:background="@color/background">
 
-
         <TextView
-            android:id="@+id/empty_list_text"
+            android:id="@+id/app_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="list is empty"
-            android:textSize="@dimen/_16sdp"
+            android:text="Welcome to Shopify"
+            android:textColor="@color/black"
+            android:textSize="@dimen/_16ssp"
+            android:textStyle="bold"
+            android:fontFamily="@font/open_sans"
+            android:layout_marginStart="@dimen/_8sdp"
+            android:layout_marginTop="@dimen/_8sdp"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"/>
+
+
+        <ImageView
+            android:id="@+id/banner"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_128sdp"
+            app:layout_constraintTop_toBottomOf="@id/app_title"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            android:textColor="@color/main"/>
+            android:scaleType="fitXY"
+            android:layout_marginTop="@dimen/_16sdp"
+            android:src="@drawable/banner_test"
+            android:layout_marginHorizontal="@dimen/_24sdp"
+            android:clipToOutline="true"
+            android:background="@drawable/custom_banner_view"/>
+
+        <TextView
+            android:id="@+id/welcome_text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Popular Products"
+            android:textSize="@dimen/_16ssp"
+            android:fontFamily="@font/open_sans"
+            android:textColor="@color/black"
+            app:layout_constraintTop_toBottomOf="@id/banner"
+            app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginStart="@dimen/_8sdp"
+            android:layout_marginTop="@dimen/_16sdp"/>
 
         <ProgressBar
             android:id="@+id/progress_bar"
-            android:layout_width="@dimen/_30sdp"
-            android:layout_height="@dimen/_30sdp"
+            android:layout_width="@dimen/_32sdp"
+            android:layout_height="@dimen/_32sdp"
             android:indeterminateTint="@color/main"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"/>
 
+        <TextView
+            android:id="@+id/error_message_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="no internet connection"
+            android:padding="@dimen/_8sdp"
+            android:textColor="@color/black"
+            android:fontFamily="@font/open_sans"
+            android:textStyle="bold"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"/>
+
+        <Button
+            android:id="@+id/try_again_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="try again"
+            android:fontFamily="@font/open_sans"
+            android:textStyle="bold"
+            android:padding="@dimen/_8sdp"
+            app:layout_constraintTop_toBottomOf="@+id/error_message_text"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
+
+
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recycler_view"
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:background="@color/background"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+            app:spanCount="2"
             tools:listitem="@layout/productes_item"
-            android:layout_marginTop="@dimen/_8sdp"/>
-
-
+            android:layout_marginTop="@dimen/_8sdp"
+            android:paddingBottom="@dimen/_8sdp"
+            app:layout_constraintTop_toBottomOf="@id/welcome_text"
+            app:layout_constraintBottom_toBottomOf="parent"/>
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

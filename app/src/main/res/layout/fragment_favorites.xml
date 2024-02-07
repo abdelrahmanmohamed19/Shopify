@@ -1,29 +1,65 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:android="http://schemas.android.com/apk/res/android"
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <data>
-
-    </data>
+    <data></data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@color/background">
 
+        <ImageView
+            android:id="@+id/empty_list_icon"
+            android:layout_width="@dimen/_64sdp"
+            android:layout_height="wrap_content"
+            android:src="@drawable/no_favorites"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:tint="@color/main"
+            app:layout_constraintEnd_toEndOf="parent"/>
+
         <TextView
             android:id="@+id/empty_list_text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:text="Your favorites list is empty"
+            android:padding="@dimen/_12sdp"
+            android:textColor="@color/black"
+            android:fontFamily="@font/open_sans"
+            android:textStyle="bold"
+            app:layout_constraintTop_toBottomOf="@id/empty_list_icon"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"/>
+
+        <TextView
+            android:id="@+id/error_message_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:text="list is empty"
-            android:textSize="@dimen/_32sdp"
+            android:textStyle="bold"
+            android:fontFamily="@font/open_sans"
+            android:padding="@dimen/_8sdp"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            android:textColor="@color/main"/>
+            android:textColor="@color/black"/>
 
+        <Button
+            android:id="@+id/try_again_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="try again"
+            android:textStyle="bold"
+            android:fontFamily="@font/open_sans"
+            android:padding="@dimen/_8sdp"
+            app:layout_constraintTop_toBottomOf="@+id/empty_list_text"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
 
         <ProgressBar
             android:id="@+id/progress_bar"
@@ -38,12 +74,15 @@
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recycler_view"
             android:layout_width="match_parent"
-            android:layout_height="0dp"
+            android:layout_height="match_parent"
             android:background="@color/white"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+            app:spanCount="2"
+            android:paddingBottom="@dimen/_32sdp"
             tools:listitem="@layout/productes_item"
-            android:layout_marginTop="@dimen/_8sdp"/>
+            android:layout_marginTop="@dimen/_8sdp" />
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

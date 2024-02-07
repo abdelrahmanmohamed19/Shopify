@@ -1,13 +1,13 @@
 package com.example.gocart.presentation.cart
 
 import android.content.Context
-import android.opengl.Visibility
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import com.example.gocart.R
-import com.example.gocart.data.local.SharedPreferences
+import com.example.gocart.data.local.AppPreferences
 import com.example.gocart.databinding.CartitemBinding
 import com.example.gocart.domain.model.CartItem
 
@@ -25,10 +25,11 @@ class CartAdapter (val context : Context,  private val cartViewModel: CartViewMo
         override fun onBindViewHolder(holder: ViewHolder, position: Int) {
             val item = cartList[position]
             holder.binding.itemName.text = item.name
-            holder.binding.itemPrice.text="Price : ${item.price}"
-            holder.binding.quantity.text="Quantity ${item.quantity}"
+            holder.binding.itemPrice.text="Price: ${item.price} EG"
+            holder.binding.quantity.text="Quantity: ${item.quantity}"
             holder.binding.deleteIcon.setOnClickListener {
-                cartViewModel.addOrRemoveToCart(SharedPreferences(context).fetchToken()!!,item.id,context)
+                cartViewModel.addRemoveFromCart(AppPreferences(context).getToken()!!,item.id)
+                Toast.makeText(context, "item is deleted", Toast.LENGTH_LONG).show()
             }
         }
 

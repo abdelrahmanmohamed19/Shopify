@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+    </data>
+
+  <LinearLayout
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:orientation="vertical">
+
+      <TextView
+          android:id="@+id/menu_text"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:text="Menu"
+          android:textSize="@dimen/_24ssp"
+          android:fontFamily="@font/open_sans"
+          android:textStyle="bold"
+          android:textColor="@color/black"
+          android:gravity="center"
+          android:layout_marginTop="@dimen/_8sdp"
+          android:layout_marginStart="@dimen/_16sdp" />
+
+      <LinearLayout
+          android:layout_width="match_parent"
+          android:layout_height="match_parent"
+          android:orientation="horizontal"
+          android:layout_marginTop="@dimen/_16sdp"
+          android:layout_marginHorizontal="@dimen/_16sdp">
+
+          <ImageView
+              android:layout_width="wrap_content"
+              android:layout_height="wrap_content"
+              android:src="@drawable/baseline_logout_24"
+              android:layout_marginTop="@dimen/_2sdp" />
+
+          <TextView
+              android:id="@+id/logout_text"
+              android:layout_width="wrap_content"
+              android:layout_height="wrap_content"
+              android:text="Log out"
+              android:textSize="@dimen/_16ssp"
+              android:fontFamily="@font/open_sans"
+              android:textColor="@color/black"
+              android:gravity="center"
+              android:layout_marginStart="@dimen/_8sdp" />
+      </LinearLayout>
+
+  </LinearLayout>
+</layout>

@@ -8,8 +8,9 @@ import android.view.ViewGroup
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import com.example.gocart.databinding.FragmentFavoritesBinding
-import com.example.gocart.data.local.SharedPreferences
-import com.example.gocart.common.GenericAdapter
+import com.example.gocart.data.local.AppPreferences
+import com.example.gocart.domain.model.ProductItems
+import com.example.gocart.presentation.common.adapter.GenericAdapter
 import com.example.gocart.presentation.cart.CartViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
@@ -30,45 +31,48 @@ class FavoritesFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        val token = AppPreferences(requireContext()).getToken() !!
         binding.recyclerView.adapter = genericAdapter
-        requireActivity().title = "Favorites"
-        val token = SharedPreferences(requireContext()).fetchToken() !!
-        favoritesViewModel.getFavoritesList(token, requireContext(), view)
+        favoritesViewModel.getFavoritesList(token)
+
+        binding.apply {
+            emptyListText.visibility = View.GONE
+            emptyListIcon.visibility = View.GONE
+            errorMessageText.visibility = View.GONE
+            tryAgainButton.visibility = View.GONE
+            progressBar.visibility = View.VISIBLE
+            recyclerView.visibility = View.GONE
+        }
+
         lifecycleScope.launch {
-            favoritesViewModel.apply {
-                isLoading.collect {
-                    when (it) {
-                        true -> {
-                            binding.progressBar.visibility = View.VISIBLE
-                            binding.recyclerView.visibility = View.INVISIBLE
-                            binding.emptyListText.visibility = View.INVISIBLE
-                        }
-                        false -> {
-                            isSuccess.collect{
-                                when(it) {
-                                    true -> {
-                                        favoritesList.collect{
-                                            if (it.isNotEmpty()) {
-                                                binding.progressBar.visibility = View.INVISIBLE
-                                                binding.recyclerView.visibility = View.VISIBLE
-                                                binding.emptyListText.visibility = View.INVISIBLE
-                                                genericAdapter.setData(it)
-                                            } else {
-                                                binding.progressBar.visibility = View.INVISIBLE
-                                                binding.recyclerView.visibility = View.INVISIBLE
-                                                binding.emptyListText.visibility = View.VISIBLE
-                                            }
-                                        }
-                                    }
-                                    false -> {
-                                        binding.progressBar.visibility = View.INVISIBLE
-                                        binding.recyclerView.visibility = View.INVISIBLE
-                                        binding.emptyListText.visibility = View.INVISIBLE
-                                    }
-                                }
-                            }
-                        }
+            favoritesViewModel.favoritesUIState.collect{
+                binding.apply {
+                    recyclerView.visibility = if (it.data?.data?.data != null && it.data.data.data.isNotEmpty()) View.VISIBLE else View.GONE
+                    errorMessageText.visibility = if (it.errorMessage != "") View.VISIBLE else View.GONE
+                    tryAgainButton.visibility = if (it.errorMessage != "") View.VISIBLE else View.GONE
+                    emptyListText.visibility = if (it.data?.data?.data != null && it.data.data.data.isEmpty()) View.VISIBLE else View.GONE
+                    emptyListIcon.visibility = if (it.data?.data?.data != null && it.data.data.data.isEmpty()) View.VISIBLE else View.GONE
+                    progressBar.visibility = if (it.isLoading == true) View.VISIBLE else View.GONE
+                }
+
+                if (it.data?.data?.data != null) {
+                    val data = it.data.data.data.map {
+                        ProductItems(
+                            id = it.product.id.toString(),
+                            image = it.product.image,
+                            name = it.product.name,
+                            oldPrice = it.product.old_price.toString(),
+                            newPrice = it.product.price.toString(),
+                            description = it.product.description,
+                            isFavorite = true,
+                            inCart = it.product.in_cart
+                        )
                     }
+                    genericAdapter.setData(data)
+                } else if (it.errorMessage != "") {
+                    binding.errorMessageText.text = it.errorMessage
+                    binding.tryAgainButton.setOnClickListener { favoritesViewModel.getFavoritesList(token) }
                 }
             }
         }

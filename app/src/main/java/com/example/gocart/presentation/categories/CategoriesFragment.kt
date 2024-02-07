@@ -13,6 +13,7 @@ class CategoriesFragment : Fragment() {
 
     private var _binding: FragmentCategoriesBinding? = null
     private val binding get() = _binding!!
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -24,12 +25,13 @@ class CategoriesFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        requireActivity().title = "Categories"
-        val navController = requireActivity().findNavController(R.id.fragment_container_view_main)
-        binding.ElectronicsCard.setOnClickListener { navController.navigate(R.id.electronicsFragment) }
-        binding.LightingCard.setOnClickListener { navController.navigate(R.id.lightningFragment) }
-        binding.SportsCard.setOnClickListener { navController.navigate(R.id.sportsFragment) }
-        binding.ClothesCard.setOnClickListener { navController.navigate(R.id.clothesFragment) }
+        val navController = requireActivity().findNavController(R.id.fragment_container_view)
+        binding.apply {
+            clothesCard.setOnClickListener { navController.navigate(R.id.clothesFragment) }
+            SportsCard.setOnClickListener { navController.navigate(R.id.sportsFragment) }
+            ElectronicsCard.setOnClickListener { navController.navigate(R.id.electronicsFragment) }
+            LightingCard.setOnClickListener { navController.navigate(R.id.lightningFragment) }
+        }
     }
 
     override fun onDestroy() {

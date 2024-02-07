@@ -1,34 +1,31 @@
 package com.example.gocart.presentation.signUp
 
 import android.content.Context
-import android.widget.Toast
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import androidx.navigation.NavController
-import com.example.gocart.R
-import com.example.gocart.common.ApiResponse
+import com.example.gocart.data.ApiResponse
 import com.example.gocart.domain.use_case.SignUpUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import javax.inject.Inject
 
 @HiltViewModel
-class SignupViewModel @Inject constructor(private val useCase : SignUpUseCase) : ViewModel() {
+class SignupViewModel @Inject constructor(private val signUpUseCase : SignUpUseCase): ViewModel() {
 
-    fun signUp (context: Context, email : String , password : String , name : String , phoneNumber : String , navController: NavController) {
+    var state = MutableStateFlow(SignUpUIState())
+        private set
+
+    fun signUp (context: Context, email: String , password: String , name: String , phoneNumber: String){
         viewModelScope.launch(Dispatchers.IO) {
-            val apiResult = useCase(context, email , password, name, phoneNumber)
-            withContext(Dispatchers.Main) {
-                apiResult.collect{
-                    when(it) {
-                        is ApiResponse.Success -> {
-                            Toast.makeText(context, it.message, Toast.LENGTH_SHORT).show()
-                            navController.navigate(R.id.action_signUpFragment_to_displayFragment)
-                        }
-                        is ApiResponse.Error -> Toast.makeText(context, it.message, Toast.LENGTH_SHORT).show()
-                        is ApiResponse.Loading -> {}
+            signUpUseCase(context, email , password, name, phoneNumber).collect{ response ->
+                withContext(Dispatchers.Main) {
+                    when(response) {
+                        is ApiResponse.Success -> state.value = SignUpUIState(data = response.data)
+                        is ApiResponse.Error -> state.value = SignUpUIState(errorMessage = response.message)
+                        is ApiResponse.Loading -> state.value = SignUpUIState(isLoading = true)
                     }
                 }
             }

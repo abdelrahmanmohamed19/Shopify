@@ -1,65 +1,57 @@
 package com.example.gocart.presentation.favorites
 
-import android.content.Context
-import android.view.View
-import android.widget.Toast
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.gocart.common.ApiResponse
-import com.example.gocart.common.Utils
-import com.example.gocart.domain.model.ProductItems
-import com.example.gocart.domain.use_case.AddOrRemoveToFavoritesUseCase
+import com.example.gocart.data.ApiResponse
+import com.example.gocart.domain.use_case.AddRemoveFromFavoritesUseCase
 import com.example.gocart.domain.use_case.GetFavoritesUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableStateFlow
-import kotlinx.coroutines.flow.launchIn
-import kotlinx.coroutines.flow.onEach
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 import javax.inject.Inject
 
 @HiltViewModel
-class FavoritesViewModel @Inject constructor (private val getFavoritesUseCase: GetFavoritesUseCase, private val addOrRemoveToFavoritesUseCase: AddOrRemoveToFavoritesUseCase ) : ViewModel() {
+class FavoritesViewModel @Inject constructor (
+    private val getFavoritesUseCase: GetFavoritesUseCase,
+    private val addRemoveFromFavoritesUseCase: AddRemoveFromFavoritesUseCase
+): ViewModel() {
 
-    private var _favoritesList = MutableStateFlow(emptyList<ProductItems>())
-    val favoritesList get() = _favoritesList
+   var favoritesUIState = MutableStateFlow(FavoritesUIState())
+       private set
 
-    var isLoading = MutableStateFlow(true)
-    var isSuccess = MutableStateFlow(false)
+    var addRemoveUIState = MutableStateFlow(AddRemoveFavoritesUIState())
+        private set
 
-    fun getFavoritesList (token: String, context: Context, view : View)  {
-        getFavoritesUseCase(token).onEach {
-            when (it) {
-                is ApiResponse.Success -> {
-                    getFavoritesUseCase.favoritesList.collect { productItemsList ->
-                        _favoritesList.value = productItemsList
-                        isLoading.value = false
-                        isSuccess.value = true
-                    }
-                }
-                is ApiResponse.Error -> {
-                    isLoading.value = false
-                    isSuccess.value = false
-                    Utils.showSnackbar(view, it.message, { getFavoritesList(token,context,view) }, context)
-                }
-                is ApiResponse.Loading -> isLoading.value = true
-            }
-        }.launchIn(viewModelScope)
+    fun getFavoritesList (token: String){
+        viewModelScope.launch(Dispatchers.IO) {
+           getFavoritesUseCase(token).collect{ response ->
+               withContext(Dispatchers.Main) {
+                   when(response) {
+                       is ApiResponse.Success -> favoritesUIState.value = FavoritesUIState(data = response.data)
+                       is ApiResponse.Error -> favoritesUIState.value = FavoritesUIState(errorMessage = response.message)
+                       is ApiResponse.Loading -> favoritesUIState.value = FavoritesUIState(isLoading = true)
+                   }
+               }
+           }
+        }
     }
 
-    fun addOrRemoveToFavorites (token : String, id : Int, context: Context) {
-
-        addOrRemoveToFavoritesUseCase(token, id).onEach {
-            when (it) {
-                is ApiResponse.Success -> {
-                    val updatedList = _favoritesList.value.toMutableList()
-                    updatedList.removeIf { it.id == id.toString() }
-                    _favoritesList.value = updatedList
-                    Toast.makeText(context, it.message, Toast.LENGTH_SHORT).show()
+    fun addRemoveFromFavorites (token : String, id : Int){
+        viewModelScope.launch(Dispatchers.IO) {
+            addRemoveFromFavoritesUseCase(token, id).collect{ response ->
+                withContext(Dispatchers.Main) {
+                    when(response) {
+                        is ApiResponse.Success -> {
+                            addRemoveUIState.value = AddRemoveFavoritesUIState(data = response.data)
+                            getFavoritesList(token)
+                        }
+                        is ApiResponse.Error -> addRemoveUIState.value = AddRemoveFavoritesUIState(errorMessage = response.message)
+                        is ApiResponse.Loading -> addRemoveUIState.value = AddRemoveFavoritesUIState(isLoading = true)
+                    }
                 }
-                is ApiResponse.Error -> {
-                    Toast.makeText(context, it.message, Toast.LENGTH_SHORT).show()
-                }
-                is ApiResponse.Loading -> {}
             }
-        }.launchIn(viewModelScope)
+        }
     }
 }

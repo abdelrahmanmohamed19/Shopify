@@ -18,23 +18,22 @@
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="@dimen/_8sdp"
             android:backgroundTint="@color/white"
-            app:cardCornerRadius="@dimen/_16sdp"
             android:elevation="@dimen/_32sdp"
             app:layout_constraintTop_toTopOf="parent">
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:background="@drawable/custom_card_view">
+                android:background="@drawable/custom_cart_item">
 
                 <TextView
                     android:id="@+id/item_name"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     tools:text="Kingston A400 Internal SSD 2.5\ 240GB SATA 3 - SA400S37/240G"
-                    android:textColor="@color/main"
+                    android:textColor="@color/black"
                     android:textSize="@dimen/_12ssp"
-                    android:fontFamily="@font/roboto_bold"
+                    android:fontFamily="@font/open_sans"
                     app:layout_constraintTop_toTopOf="parent"
                     android:layout_marginTop="@dimen/_8sdp"
                     android:layout_marginStart="@dimen/_8sdp"/>
@@ -44,9 +43,10 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/_8sdp"
-                    tools:text="Price : 25000"
+                    tools:text="Price: 25000 EG"
                     android:textColor="@color/black"
-                    android:fontFamily="@font/roboto_bold"
+                    android:fontFamily="@font/open_sans"
+                    android:textStyle="bold"
                     app:layout_constraintTop_toBottomOf="@id/item_name"
                     app:layout_constraintStart_toStartOf="@id/item_name"/>
 
@@ -56,10 +56,11 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/_4sdp"
                     android:textColor="@color/discount"
-                    android:fontFamily="@font/roboto_bold"
+                    android:fontFamily="@font/open_sans"
+                    android:textStyle="bold"
                     app:layout_constraintTop_toBottomOf="@id/item_price"
                     app:layout_constraintStart_toStartOf="@id/item_price"
-                    tools:text="Quantity : 1"
+                    tools:text="Quantity: 1"
                     android:paddingBottom="@dimen/_8sdp"/>
 
                 <ImageView
@@ -68,9 +69,11 @@
                     android:layout_height="wrap_content"
                     android:src="@drawable/baseline_delete_24"
                     app:tint="@color/main"
+                    android:layout_marginBottom="@dimen/_8sdp"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toTopOf="@id/item_price"
-                    android:layout_marginEnd="@dimen/_8sdp" />
+                    app:layout_constraintTop_toTopOf="@id/quantity"
+                    app:layout_constraintBottom_toBottomOf="@id/quantity"
+                    android:layout_marginEnd="@dimen/_4sdp" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
         </androidx.cardview.widget.CardView>

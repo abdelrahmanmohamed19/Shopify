@@ -6,9 +6,14 @@ import com.google.gson.annotations.SerializedName
 data class HomeDto(
     val status: Boolean,
     val message: String,
-    val data: HomeProductsList
+    val data: HomeData
 )
-data class HomeProductsList (
+data class HomeData (
     @SerializedName("products")
-    val products: List<Product>
+    val products: List<Product>,
+    val banners: List<banner>
+)
+data class banner (
+    val id: Int,
+    val image: String
 )

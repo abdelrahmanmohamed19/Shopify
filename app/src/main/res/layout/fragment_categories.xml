@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:android="http://schemas.android.com/apk/res/android"
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
@@ -16,27 +17,104 @@
             android:id="@+id/head_text"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/_40sdp"
-            android:fontFamily="@font/roboto_bold"
-            android:text="Unleash your shopping desires"
+            android:layout_marginTop="@dimen/_64sdp"
+            android:fontFamily="@font/open_sans"
+            android:text="Discover Our Categories"
             android:textAlignment="center"
-            android:textAllCaps="true"
-            android:textColor="@color/main"
-            android:textSize="@dimen/_16sdp"
+            android:textColor="@color/black"
+            android:textSize="@dimen/_16ssp"
             android:textStyle="bold"
             app:layout_constraintTop_toTopOf="parent" />
+
+
+        <!-- Clothes Card -->
+        <androidx.cardview.widget.CardView
+            android:id="@+id/clothes_card"
+            android:layout_width="@dimen/_128sdp"
+            android:layout_height="@dimen/_128sdp"
+            android:elevation="@dimen/_64sdp"
+            app:cardCornerRadius="@dimen/_16sdp"
+            android:layout_marginHorizontal="@dimen/_12sdp"
+            android:layout_marginTop="@dimen/_64sdp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@id/head_text">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <ImageView
+                    android:id="@+id/clothes_image"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_88sdp"
+                    android:layout_marginTop="@dimen/_8sdp"
+                    android:src="@drawable/img_3"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/clothes_title"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_8sdp"
+                    android:fontFamily="@font/open_sans"
+                    android:gravity="center"
+                    android:text="Clothes"
+                    android:textColor="@color/main"
+                    android:textSize="@dimen/_12ssp"
+                    android:textStyle="bold"
+                    app:layout_constraintTop_toBottomOf="@id/clothes_image" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </androidx.cardview.widget.CardView>
+
+        <!-- Sports  Card -->
+        <androidx.cardview.widget.CardView
+            android:id="@+id/Sports_card"
+            android:layout_width="@dimen/_128sdp"
+            android:layout_height="@dimen/_128sdp"
+            android:backgroundTint="@color/white"
+            android:elevation="@dimen/_64sdp"
+            app:cardCornerRadius="@dimen/_16sdp"
+            app:layout_constraintTop_toTopOf="@id/clothes_card"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginHorizontal="@dimen/_12sdp">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <ImageView
+                    android:id="@+id/sports_image"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_88sdp"
+                    android:layout_marginTop="@dimen/_8sdp"
+                    android:src="@drawable/img_2"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/sports_title"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_8sdp"
+                    android:fontFamily="@font/open_sans"
+                    android:gravity="center"
+                    android:text="Sports"
+                    android:textColor="@color/main"
+                    android:textSize="@dimen/_12ssp"
+                    android:textStyle="bold"
+                    app:layout_constraintTop_toBottomOf="@id/sports_image" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </androidx.cardview.widget.CardView>
 
         <!-- Electronics Devices CardView -->
         <androidx.cardview.widget.CardView
             android:id="@+id/Electronics_Card"
             android:layout_width="@dimen/_128sdp"
             android:layout_height="@dimen/_128sdp"
-            android:layout_marginHorizontal="@dimen/_12sdp"
-            android:layout_marginTop="@dimen/_60sdp"
+            android:layout_marginTop="@dimen/_32sdp"
             android:elevation="@dimen/_64sdp"
             app:cardCornerRadius="@dimen/_16sdp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@id/head_text">
+            app:layout_constraintStart_toStartOf="@id/clothes_card"
+            app:layout_constraintTop_toBottomOf="@id/clothes_card">
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
@@ -55,7 +133,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/_8sdp"
-                    android:fontFamily="@font/roboto_bold"
+                    android:fontFamily="@font/open_sans"
+                    android:textStyle="bold"
                     android:gravity="center"
                     android:text="Electronics"
                     android:textColor="@color/main"
@@ -98,84 +177,6 @@
                     android:textColor="@color/main"
                     android:textSize="@dimen/_12ssp"
                     app:layout_constraintTop_toBottomOf="@id/image1" />
-            </androidx.constraintlayout.widget.ConstraintLayout>
-        </androidx.cardview.widget.CardView>
-
-        <!-- Sports  CardView -->
-        <androidx.cardview.widget.CardView
-            android:id="@+id/Sports_card"
-            android:layout_width="@dimen/_128sdp"
-            android:layout_height="@dimen/_128sdp"
-            android:layout_marginHorizontal="@dimen/_12sdp"
-            android:layout_marginTop="@dimen/_32sdp"
-            android:backgroundTint="@color/white"
-            android:elevation="@dimen/_64sdp"
-            app:cardCornerRadius="@dimen/_16sdp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/Electronics_Card">
-
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent">
-
-                <ImageView
-                    android:id="@+id/image2"
-                    android:layout_width="match_parent"
-                    android:layout_height="@dimen/_88sdp"
-                    android:layout_marginTop="@dimen/_8sdp"
-                    android:src="@drawable/img_2"
-                    app:layout_constraintTop_toTopOf="parent" />
-
-                <TextView
-                    android:id="@+id/name2"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/_8sdp"
-                    android:fontFamily="@font/roboto_bold"
-                    android:gravity="center"
-                    android:text="Sports"
-                    android:textColor="@color/main"
-                    android:textSize="@dimen/_12ssp"
-                    app:layout_constraintTop_toBottomOf="@id/image2" />
-            </androidx.constraintlayout.widget.ConstraintLayout>
-        </androidx.cardview.widget.CardView>
-
-
-        <!-- Clothes CardView -->
-        <androidx.cardview.widget.CardView
-            android:id="@+id/Clothes_card"
-            android:layout_width="@dimen/_128sdp"
-            android:layout_height="@dimen/_128sdp"
-            android:layout_marginHorizontal="@dimen/_12sdp"
-            android:backgroundTint="@color/white"
-            android:elevation="@dimen/_64sdp"
-            app:cardCornerRadius="@dimen/_16sdp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="@id/Sports_card">
-
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent">
-
-                <ImageView
-                    android:id="@+id/image3"
-                    android:layout_width="match_parent"
-                    android:layout_height="@dimen/_88sdp"
-                    android:layout_marginTop="@dimen/_8sdp"
-                    android:src="@drawable/img_3"
-                    app:layout_constraintTop_toTopOf="parent" />
-
-                <TextView
-                    android:id="@+id/name3"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/_8sdp"
-                    android:fontFamily="@font/roboto_bold"
-                    android:gravity="center"
-                    android:text="Clothes"
-                    android:textColor="@color/main"
-                    android:textSize="@dimen/_12ssp"
-                    app:layout_constraintTop_toBottomOf="@id/image3" />
             </androidx.constraintlayout.widget.ConstraintLayout>
         </androidx.cardview.widget.CardView>
 

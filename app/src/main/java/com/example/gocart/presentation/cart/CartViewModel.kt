@@ -1,72 +1,57 @@
 package com.example.gocart.presentation.cart
 
-import android.content.Context
-import android.util.Log
-import android.view.View
-import android.widget.Toast
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.gocart.common.ApiResponse
-import com.example.gocart.common.Utils
-import com.example.gocart.domain.model.CartItem
-import com.example.gocart.domain.use_case.AddOrRemoveToCartUseCase
+import com.example.gocart.data.ApiResponse
+import com.example.gocart.domain.use_case.AddRemoveFromCartUseCase
 import com.example.gocart.domain.use_case.GetCartUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableStateFlow
-import kotlinx.coroutines.flow.launchIn
-import kotlinx.coroutines.flow.onEach
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import javax.inject.Inject
 
 @HiltViewModel
-class CartViewModel @Inject constructor(private val getCartUseCase: GetCartUseCase, private val addOrRemoveToCartUseCase: AddOrRemoveToCartUseCase) : ViewModel() {
+class CartViewModel @Inject constructor(
+    private val getCartUseCase: GetCartUseCase,
+    private val addRemoveFromCartUseCase: AddRemoveFromCartUseCase
+): ViewModel() {
 
-    private var _cartList = MutableStateFlow(emptyList<CartItem>())
-    val cartList get() = _cartList
+    var state = MutableStateFlow(CartUIState())
+        private set
 
-    private var _totalPrice = ""
-    val totalPrice get() = _totalPrice
+    var addRemoveState = MutableStateFlow(AddRemoveCartUIState())
+        private set
 
-    var isLoading = MutableStateFlow(false)
-    var isSuccess = MutableStateFlow(false)
-
-    fun getCartList(token: String, context: Context, view:View) {
-        getCartUseCase(token).onEach{
-            when (it) {
-                is ApiResponse.Success -> {
-                    _totalPrice = getCartUseCase.totalPrice
-                    getCartUseCase.cartList.collect { cartItemList ->
-                        _cartList.value = cartItemList
-                        isLoading.value = false
-                        isSuccess.value = true
+    fun getCartList(token: String) {
+        viewModelScope.launch(Dispatchers.IO) {
+            getCartUseCase(token).collect{ response ->
+                withContext(Dispatchers.Main) {
+                    when (response) {
+                        is ApiResponse.Success -> state.value = CartUIState(data = response.data)
+                        is ApiResponse.Error -> state.value = CartUIState(errorMessage = response.message)
+                        is ApiResponse.Loading -> state.value = CartUIState(isLoading = true)
                     }
                 }
-                is ApiResponse.Error -> {
-                    isLoading.value = false
-                    isSuccess.value = false
-                    Utils.showSnackbar(view, it.message, { getCartList(token,context,view) }, context)
-                }
-                is ApiResponse.Loading -> {
-                    isLoading.value = true
-                }
             }
-        }.launchIn(viewModelScope)
+        }
     }
 
-    fun addOrRemoveToCart(token: String, id: Int, context: Context) {
-        addOrRemoveToCartUseCase(token, id).onEach{
-            when (it) {
-                is ApiResponse.Success -> {
-                    val updatedList = _cartList.value.toMutableList()
-                    updatedList.removeIf { it.id == id }
-                    _cartList.value = updatedList
-                    Toast.makeText(context, it.message, Toast.LENGTH_SHORT).show()
+    fun addRemoveFromCart(token: String, id: Int) {
+        viewModelScope.launch(Dispatchers.IO) {
+            addRemoveFromCartUseCase(token,id).collect{ response ->
+                withContext(Dispatchers.Main) {
+                    when (response) {
+                        is ApiResponse.Success -> {
+                            addRemoveState.value = AddRemoveCartUIState(data = response.data)
+                            getCartList(token)
+                        }
+                        is ApiResponse.Error -> addRemoveState.value = AddRemoveCartUIState(errorMessage = response.message)
+                        is ApiResponse.Loading -> addRemoveState.value = AddRemoveCartUIState(isLoading = true)
+                    }
                 }
-                is ApiResponse.Error -> Toast.makeText(context, it.message, Toast.LENGTH_SHORT).show()
-                is ApiResponse.Loading -> {}
             }
-        }.launchIn(viewModelScope)
+        }
     }
 }

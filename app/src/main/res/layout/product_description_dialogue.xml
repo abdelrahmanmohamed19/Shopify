@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <data>
+    </data>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="16dp">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/open_sans"
+            android:textColor="@color/black"
+            android:text="Product Details"
+            android:textSize="@dimen/_16ssp"
+            android:textStyle="bold"/>
+
+            <TextView
+                android:id="@+id/productDescriptionTextView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/open_sans"
+                android:textColor="@color/black"
+                android:layout_marginTop="@dimen/_8sdp"
+                android:text="sdlksjsanjkfndksfhweioqwknsncznjkdfjdhjdnjcxnvkcxvcbxhkvdfldnsadncnjkvnkjfjsdkhfdjfkldncvnxcvncvbjkfhfldjflkdncxm" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/open_sans"
+                android:textColor="@color/black"
+                android:text="Quntatiy"
+                android:textSize="@dimen/_16ssp"
+                android:textStyle="bold"
+                android:layout_gravity="center"/>
+
+            <NumberPicker
+                android:id="@+id/quantityPicker"
+                android:layout_width="wrap_content"
+                android:layout_height="@dimen/_88sdp"
+                android:layout_marginStart="@dimen/_16sdp"/>
+        </LinearLayout>
+
+
+            <Button
+                android:id="@+id/addToCartButton"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Add to Cart"
+                android:layout_gravity="center"
+                android:layout_marginHorizontal="@dimen/_24sdp"/>
+    </LinearLayout>
+    </ScrollView>
+</layout>

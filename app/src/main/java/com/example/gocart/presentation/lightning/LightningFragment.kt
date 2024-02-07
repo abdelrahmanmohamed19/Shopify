@@ -7,11 +7,13 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
-import com.example.gocart.common.GenericAdapter
+import com.example.gocart.data.local.AppPreferences
+import com.example.gocart.presentation.common.adapter.GenericAdapter
 import com.example.gocart.databinding.FragmentLightingBinding
+import com.example.gocart.domain.model.ProductItems
 import com.example.gocart.presentation.cart.CartViewModel
 import com.example.gocart.presentation.favorites.FavoritesViewModel
-import com.example.gocart.presentation.ui.ProductsViewModel
+import com.example.gocart.presentation.common.viewmodel.CategoryProductsViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 
@@ -20,7 +22,7 @@ class LightningFragment : Fragment() {
 
     private var _binding : FragmentLightingBinding? = null
     private val binding get() = _binding !!
-    private val viewModel by viewModels<ProductsViewModel>()
+    private val categoriesViewModel by viewModels<CategoryProductsViewModel>()
     private val favoritesViewModel by viewModels<FavoritesViewModel>()
     private val cartViewModel by viewModels<CartViewModel>()
     private val genericAdapter by lazy { GenericAdapter(requireContext(), favoritesViewModel, cartViewModel) }
@@ -32,45 +34,47 @@ class LightningFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        requireActivity().title = "Lightning"
+        val token = AppPreferences(requireContext()).getToken() ?: ""
         binding.recyclerView.adapter = genericAdapter
-        viewModel.getCategoriesProducts(40, requireContext(),view)
-        lifecycleScope.launch {
-            viewModel.apply {
-                isLoading.collect{
-                    when (it) {
-                        true -> {
-                            binding.progressBar.visibility = View.VISIBLE
-                            binding.recyclerView.visibility = View.INVISIBLE
-                            binding.emptyListText.visibility = View.INVISIBLE
-                        }
-                        false -> {
-                            isSuccess.collect{
-                                when(it) {
-                                    true -> {
-                                        productsList.collect{
-                                            if (it.isNotEmpty()) {
-                                                binding.progressBar.visibility = View.INVISIBLE
-                                                binding.recyclerView.visibility = View.VISIBLE
-                                                binding.emptyListText.visibility = View.INVISIBLE
-                                                genericAdapter.setData(it)
 
-                                            } else {
-                                                binding.progressBar.visibility = View.INVISIBLE
-                                                binding.recyclerView.visibility = View.INVISIBLE
-                                                binding.emptyListText.visibility = View.VISIBLE
-                                            }
-                                        }
-                                    }
-                                    false -> {
-                                        binding.progressBar.visibility = View.INVISIBLE
-                                        binding.recyclerView.visibility = View.INVISIBLE
-                                        binding.emptyListText.visibility = View.INVISIBLE
-                                    }
-                                }
-                            }
-                        }
+        binding.apply {
+            title.visibility = View.GONE
+            recyclerView.visibility = View.GONE
+            errorMessageText.visibility = View.GONE
+            tryAgainButton.visibility = View.GONE
+            progressBar.visibility = View.VISIBLE
+        }
+
+        categoriesViewModel.getCategoriesProducts(token, 40)
+
+        viewLifecycleOwner.lifecycleScope.launch {
+            categoriesViewModel.state.collect{
+
+                binding.apply {
+                    title.visibility = if (it.data != null) View.VISIBLE else View.GONE
+                    recyclerView.visibility = if (it.data != null) View.VISIBLE else View.GONE
+                    errorMessageText.visibility = if (it.errorMessage != "") View.VISIBLE else View.GONE
+                    tryAgainButton.visibility = if (it.errorMessage != "") View.VISIBLE else View.GONE
+                    progressBar.visibility = if (it.isLoading == true) View.VISIBLE else View.GONE
+                }
+
+                if (it.data != null) {
+                    val data = it.data.data.data.map {
+                        ProductItems(
+                            id = it.id.toString(),
+                            image = it.image,
+                            name = it.name,
+                            newPrice = it.price.toString(),
+                            oldPrice = it.oldPrice.toString(),
+                            description = it.description,
+                            isFavorite = it.in_favorites,
+                            inCart = it.in_cart
+                        )
                     }
+                    genericAdapter.setData(data)
+                } else if (it.errorMessage != "") {
+                    binding.errorMessageText.text = it.errorMessage
+                    binding.tryAgainButton.setOnClickListener{categoriesViewModel.getCategoriesProducts(token, 40)}
                 }
             }
         }

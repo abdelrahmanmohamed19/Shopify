@@ -1,16 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:android="http://schemas.android.com/apk/res/android"
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
     <data></data>
 
     <androidx.cardview.widget.CardView
+        android:id="@+id/card_view"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="@dimen/_12sdp"
-        android:layout_marginBottom="@dimen/_16sdp"
-        android:layout_marginTop="@dimen/_4sdp"
+        android:layout_marginBottom="@dimen/_8sdp"
+        android:layout_marginTop="@dimen/_8sdp"
         android:elevation="@dimen/_64sdp"
         app:cardCornerRadius="@dimen/_16sdp"
         app:layout_constraintTop_toTopOf="parent">
@@ -24,67 +26,55 @@
             <ImageView
                 android:id="@+id/image"
                 android:layout_width="match_parent"
-                android:layout_height="@dimen/_128sdp"
-                android:paddingTop="@dimen/_8sdp"
+                android:layout_height="@dimen/_80sdp"
+                android:layout_margin="@dimen/_8sdp"
+                android:padding="@dimen/_8sdp"
                 android:src="@drawable/img_1"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
                 android:id="@+id/description"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/_4sdp"
                 android:layout_marginTop="@dimen/_8sdp"
-                android:fontFamily="@font/roboto_bold"
-                android:textColor="@color/main"
-                android:textSize="@dimen/_14ssp"
+                android:padding="@dimen/_4sdp"
+                android:fontFamily="@font/open_sans"
+                android:textStyle="bold"
+                android:textColor="@color/black"
+                android:maxLines="2"
+                android:gravity="center"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/image"
-                tools:text="Kingston A400 Internal SSD 2.5\ 240GB SATA 3 - SA400S37/240G " />
+                tools:text="Kingston A400 Internal SSD 2.5\ 240GB SATA 3 - SA400S37/240G" />
 
             <TextView
                 android:id="@+id/new_price"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/_8sdp"
-                android:fontFamily="@font/roboto_bold"
+                android:fontFamily="@font/open_sans"
+                android:padding="@dimen/_4sdp"
                 android:textColor="@color/black"
-                android:textSize="@dimen/_12ssp"
                 android:textStyle="bold"
-                app:layout_constraintStart_toStartOf="@id/description"
+                android:gravity="center"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/description"
-                tools:text="New Price : 25000 EG" />
+                tools:text="2500 EG"/>
 
-            <TextView
-                android:id="@+id/old_price"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/_4sdp"
-                android:fontFamily="@font/roboto_bold"
-                android:textColor="@color/discount"
-                app:layout_constraintStart_toStartOf="@id/new_price"
-                app:layout_constraintTop_toBottomOf="@id/new_price"
-                tools:text="Old Price : 25000 EG" />
-
-            <ImageView
-                android:id="@+id/cart_icon"
-                android:layout_width="@dimen/_16sdp"
-                android:layout_height="@dimen/_16sdp"
-                android:layout_marginRight="@dimen/_8sdp"
-                android:src="@drawable/baseline_shopping_cart_24"
-                app:layout_constraintRight_toLeftOf="@+id/favorites_icon"
-                app:layout_constraintRight_toRightOf="parent"
-                app:layout_constraintTop_toTopOf="@id/new_price"
-                app:tint="@color/main" />
 
             <ImageView
                 android:id="@+id/favorites_icon"
                 android:layout_width="@dimen/_16sdp"
                 android:layout_height="@dimen/_16sdp"
-                android:layout_marginRight="@dimen/_16sdp"
+                android:layout_marginTop="@dimen/_16sdp"
+                android:layout_marginRight="@dimen/_8sdp"
                 android:src="@drawable/baseline_favorite_24"
                 app:layout_constraintRight_toRightOf="parent"
-                app:layout_constraintTop_toTopOf="@id/cart_icon"
-                app:tint="@color/main" />
+                app:layout_constraintTop_toTopOf="parent"
+                app:tint="@color/main"/>
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.cardview.widget.CardView>
