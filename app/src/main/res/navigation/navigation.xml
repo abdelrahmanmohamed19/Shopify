@@ -3,88 +3,166 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/navigation"
-    app:startDestination="@id/login">
-
+    app:startDestination="@id/splashFragment">
     <fragment
-        android:id="@+id/login"
-        android:name="com.example.gocart.ui.registration.Login"
-        android:label="fragment_login"
-        tools:layout="@layout/fragment_login" >
+        android:id="@+id/signUpFragment"
+        android:name="com.example.gocart.presentation.signUp.SignUpFragment"
+        android:label="SignUpFragment" >
         <action
-            android:id="@+id/action_login_to_signup"
-            app:destination="@id/signup" />
+            android:id="@+id/action_signUpFragment_to_signInFragment"
+            app:destination="@id/signInFragment" />
         <action
-            android:id="@+id/action_login_to_displayFragment"
-            app:destination="@id/displayFragment" />
+            android:id="@+id/action_signUpFragment_to_displayFragment"
+            app:destination="@id/displayFragment"
+            app:popUpTo="@id/signUpFragment"
+            app:popUpToInclusive="true" />
     </fragment>
     <fragment
-        android:id="@+id/signup"
-        android:name="com.example.gocart.ui.registration.Signup"
-        android:label="fragment_signup"
-        tools:layout="@layout/fragment_signup" >
+        android:id="@+id/signInFragment"
+        android:name="com.example.gocart.presentation.signIn.SignInFragment"
+        android:label="SignInFragment" >
         <action
-            android:id="@+id/action_signup_to_login"
-            app:destination="@id/login" />
+            android:id="@+id/action_signInFragment_to_signUpFragment"
+            app:destination="@id/signUpFragment" />
         <action
-            android:id="@+id/action_signup_to_displayFragment"
-            app:destination="@id/displayFragment" />
+            android:id="@+id/action_signInFragment_to_displayFragment"
+            app:destination="@id/displayFragment"
+            app:popUpTo="@id/signInFragment"
+            app:popUpToInclusive="true" />
     </fragment>
     <fragment
         android:id="@+id/displayFragment"
-        android:name="com.example.gocart.ui.DisplayFragment"
+        android:name="com.example.gocart.presentation.ui.DisplayFragment"
         android:label="DisplayFragment" >
         <action
-            android:id="@+id/action_displayFragment_to_sportsFragment"
-            app:destination="@id/sportsFragment" />
+            android:id="@+id/action_displayFragment_to_homeFragment"
+            app:destination="@id/homeFragment" />
+        <action
+            android:id="@+id/action_displayFragment_to_categoriesFragment"
+            app:destination="@id/categoriesFragment" />
+        <action
+            android:id="@+id/action_displayFragment_to_favoritesFragment"
+            app:destination="@id/favoritesFragment" />
+        <action
+            android:id="@+id/action_displayFragment_to_cartFragment"
+            app:destination="@id/cartFragment" />
         <action
             android:id="@+id/action_displayFragment_to_clothesFragment"
             app:destination="@id/clothesFragment" />
         <action
-            android:id="@+id/action_displayFragment_to_electrionicsFragment"
-            app:destination="@id/electrionicsFragment"
-            app:popUpTo="@id/categoriesFragment2"
-            app:popUpToInclusive="true"/>
+            android:id="@+id/action_displayFragment_to_electronicsFragment"
+            app:destination="@id/electronicsFragment" />
         <action
-            android:id="@+id/action_displayFragment_to_lightingFragment"
-            app:destination="@id/lightingFragment" />
+            android:id="@+id/action_displayFragment_to_sportsFragment"
+            app:destination="@id/sportsFragment" />
         <action
-            android:id="@+id/action_displayFragment_to_login"
-            app:destination="@id/login" />
+            android:id="@+id/action_displayFragment_to_lightningFragment"
+            app:destination="@id/lightningFragment" />
+        <action
+            android:id="@+id/action_displayFragment_to_signInFragment"
+            app:destination="@id/signInFragment" />
+        <action
+            android:id="@+id/action_displayFragment_to_signInFragment2"
+            app:destination="@id/signInFragment"
+            app:popUpTo="@id/displayFragment"
+            app:popUpToInclusive="true" />
+        <action
+            android:id="@+id/action_displayFragment_self"
+            app:destination="@id/displayFragment" />
+        <action
+            android:id="@+id/action_displayFragment_to_signInFragment3"
+            app:destination="@id/signInFragment" />
     </fragment>
     <fragment
-        android:id="@+id/sportsFragment"
-        android:name="com.example.gocart.ui.SportsFragment"
-        android:label="SportsFragment" >
+        android:id="@+id/splashFragment"
+        android:name="com.example.gocart.presentation.ui.SplashFragment"
+        android:label="SplashFragment" >
         <action
-            android:id="@+id/action_sportsFragment_to_displayFragment"
+            android:id="@+id/action_splashFragment_to_signInFragment"
+            app:destination="@id/signInFragment"
+            app:popUpTo="@id/splashFragment"
+            app:popUpToInclusive="true" />
+        <action
+            android:id="@+id/action_splashFragment_to_signUpFragment"
+            app:destination="@id/signUpFragment"
+            app:popUpTo="@id/splashFragment"
+            app:popUpToInclusive="true" />
+        <action
+            android:id="@+id/action_splashFragment_to_displayFragment"
+            app:destination="@id/displayFragment"
+            app:popUpTo="@id/splashFragment"
+            app:popUpToInclusive="true" />
+    </fragment>
+    <fragment
+        android:id="@+id/homeFragment"
+        android:name="com.example.gocart.presentation.home.HomeFragment"
+        android:label="HomeFragment" >
+        <action
+            android:id="@+id/action_homeFragment_to_displayFragment"
+            app:destination="@id/displayFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_displayFragment2"
+            app:destination="@id/displayFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/categoriesFragment"
+        android:name="com.example.gocart.presentation.categories.CategoriesFragment"
+        android:label="CategoriesFragment" >
+        <action
+            android:id="@+id/action_categoriesFragment_to_clothesFragment"
+            app:destination="@id/clothesFragment" />
+        <action
+            android:id="@+id/action_categoriesFragment_to_lightningFragment"
+            app:destination="@id/lightningFragment" />
+        <action
+            android:id="@+id/action_categoriesFragment_to_sportsFragment"
+            app:destination="@id/sportsFragment" />
+        <action
+            android:id="@+id/action_categoriesFragment_to_electronicsFragment"
+            app:destination="@id/electronicsFragment" />
+        <action
+            android:id="@+id/action_categoriesFragment_to_displayFragment"
+            app:destination="@id/displayFragment" />
+        <action
+            android:id="@+id/action_categoriesFragment_to_displayFragment2"
+            app:destination="@id/displayFragment" />
+        <action
+            android:id="@+id/action_categoriesFragment_to_displayFragment3"
+            app:destination="@id/displayFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/favoritesFragment"
+        android:name="com.example.gocart.presentation.favorites.FavoritesFragment"
+        android:label="FavoritesFragment" >
+        <action
+            android:id="@+id/action_favoritesFragment_to_displayFragment"
+            app:destination="@id/displayFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/cartFragment"
+        android:name="com.example.gocart.presentation.cart.CartFragment"
+        android:label="CartFragment" >
+        <action
+            android:id="@+id/action_cartFragment_to_displayFragment"
+            app:destination="@id/displayFragment" />
+        <action
+            android:id="@+id/action_cartFragment_to_displayFragment2"
             app:destination="@id/displayFragment" />
     </fragment>
     <fragment
         android:id="@+id/clothesFragment"
-        android:name="com.example.gocart.ui.ClothesFragment"
-        android:label="ClothesFragment" >
-        <action
-            android:id="@+id/action_clothesFragment_to_displayFragment"
-            app:destination="@id/displayFragment" />
-    </fragment>
+        android:name="com.example.gocart.presentation.clothes.ClothesFragment"
+        android:label="ClothesFragment" />
     <fragment
-        android:id="@+id/electrionicsFragment"
-        android:name="com.example.gocart.ui.ElectrionicsFragment"
-        android:label="ElectrionicsFragment" >
-        <action
-            android:id="@+id/action_electrionicsFragment_to_displayFragment"
-            app:destination="@id/displayFragment" />
-    </fragment>
+        android:id="@+id/electronicsFragment"
+        android:name="com.example.gocart.presentation.electronics.ElectronicsFragment"
+        android:label="ElectronicsFragment" />
     <fragment
-        android:id="@+id/lightingFragment"
-        android:name="com.example.gocart.ui.LightingFragment"
-        android:label="LightingFragment" >
-        <action
-            android:id="@+id/action_lightingFragment_to_displayFragment"
-            app:destination="@id/displayFragment" />
-    </fragment>
+        android:id="@+id/lightningFragment"
+        android:name="com.example.gocart.presentation.lightning.LightningFragment"
+        android:label="LightningFragment" />
     <fragment
-        android:id="@+id/categoriesFragment2"
-        android:name="com.example.gocart.ui.CategoriesFragment"
-        android:label="CategoriesFragment" />
+        android:id="@+id/sportsFragment"
+        android:name="com.example.gocart.presentation.sports.SportsFragment"
+        android:label="SportsFragment" />
 </navigation>

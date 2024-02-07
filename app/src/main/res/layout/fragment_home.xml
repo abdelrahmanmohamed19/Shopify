@@ -1,44 +1,52 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:android="http://schemas.android.com/apk/res/android"
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
-
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".ui.HomeFragment"
+        tools:context=".presentation.home.HomeFragment"
         android:background="@color/background">
 
+
         <TextView
-            android:id="@+id/shoppify"
-            android:layout_width="match_parent"
+            android:id="@+id/empty_list_text"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/_8sdp"
-            android:text="Unleash your shopping desires."
-            android:textAllCaps="true"
+            android:text="list is empty"
             android:textSize="@dimen/_16sdp"
-            android:textColor="@color/main"
-            android:fontFamily="@font/roboto_bold"
             app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            android:textAlignment="center" />
+            android:textColor="@color/main"/>
 
-       <androidx.recyclerview.widget.RecyclerView
-           android:id="@+id/homeRecycler"
-           android:layout_width="match_parent"
-           android:layout_height="0dp"
-           android:background="@color/background"
-           app:layout_constraintRight_toRightOf="parent"
-           app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-           app:layout_constraintLeft_toLeftOf="parent"
-           app:layout_constraintTop_toBottomOf="@id/shoppify"
-           app:layout_constraintBottom_toBottomOf="parent"
-           tools:listitem="@layout/productes_item"/>
+        <ProgressBar
+            android:id="@+id/progress_bar"
+            android:layout_width="@dimen/_30sdp"
+            android:layout_height="@dimen/_30sdp"
+            android:indeterminateTint="@color/main"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"/>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recycler_view"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:background="@color/background"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            tools:listitem="@layout/productes_item"
+            android:layout_marginTop="@dimen/_8sdp"/>
+
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

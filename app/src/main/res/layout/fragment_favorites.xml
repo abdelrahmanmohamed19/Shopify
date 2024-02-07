@@ -13,33 +13,37 @@
         android:background="@color/background">
 
         <TextView
-            android:id="@+id/shoppify"
+            android:id="@+id/empty_list_text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/_8sdp"
-            android:text="Favorites"
-            android:drawablePadding="@dimen/_4sdp"
-            android:drawableTint="@color/main"
-            android:textAllCaps="true"
+            android:text="list is empty"
             android:textSize="@dimen/_32sdp"
-            android:textColor="@color/main"
-            android:fontFamily="@font/roboto_bold"
             app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            android:textAlignment="center" />
+            android:textColor="@color/main"/>
+
+
+        <ProgressBar
+            android:id="@+id/progress_bar"
+            android:layout_width="@dimen/_32sdp"
+            android:layout_height="@dimen/_32sdp"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:indeterminateTint="@color/main"/>
 
         <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/FavoritesRecycler"
+            android:id="@+id/recycler_view"
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:background="@color/background"
-            app:layout_constraintRight_toRightOf="parent"
-            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/shoppify"
+            android:background="@color/white"
+            app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"
-            tools:listitem="@layout/home_item"/>
-
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            tools:listitem="@layout/productes_item"
+            android:layout_marginTop="@dimen/_8sdp"/>
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

@@ -1,41 +1,35 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:android="http://schemas.android.com/apk/res/android"
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
-
-    <data>
-
-    </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         tools:context=".ui.DisplayActivity"
-        android:background="@color/background">
-
+        android:background="@color/white">
 
         <androidx.fragment.app.FragmentContainerView
-            android:id="@+id/fragment_container"
+            android:id="@+id/fragment_container_view"
+            android:name="androidx.navigation.fragment.NavHostFragment"
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_marginBottom="@dimen/_8sdp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintBottom_toTopOf="@id/bottomnavi" />
+            android:layout_marginTop="@dimen/_8sdp"
+            app:layout_constraintBottom_toTopOf="@id/bottom_navigation"
+            app:defaultNavHost="true"
+            app:navGraph="@navigation/navigation2" />
 
         <com.google.android.material.bottomnavigation.BottomNavigationView
-            android:id="@+id/bottomnavi"
-            android:layout_width="@dimen/_270sdp"
-            android:layout_height="@dimen/_45sdp"
-            android:background="@drawable/customnav"
-            android:layout_marginBottom="@dimen/_8sdp"
+            android:id="@+id/bottom_navigation"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_48sdp"
+            android:background="@color/main"
             app:menu="@menu/bottomnavigation"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
             app:itemIconTint="@color/white"
-            app:itemTextColor="@color/white" />
+            app:itemTextColor="@color/white"/>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

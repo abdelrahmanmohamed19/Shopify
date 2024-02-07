@@ -4,7 +4,6 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
-
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -13,60 +12,81 @@
         android:background="@color/background">
 
         <TextView
-            android:id="@+id/shoppify"
+            android:id="@+id/empty_list_text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/_8sdp"
-            android:text="Cart"
-            android:drawablePadding="@dimen/_4sdp"
-            android:drawableTint="@color/main"
-            android:textAllCaps="true"
+            android:text="list is empty"
             android:textSize="@dimen/_32sdp"
-            android:textColor="@color/main"
-            android:fontFamily="@font/roboto_bold"
             app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            android:textAlignment="center" />
+            android:textColor="@color/main"/>
+
+        <ProgressBar
+            android:id="@+id/progress_bar"
+            android:layout_width="@dimen/_32sdp"
+            android:layout_height="@dimen/_32sdp"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:indeterminateTint="@color/main"/>
 
         <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/FavoritesRecycler"
+            android:id="@+id/recycler_view"
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:background="@color/background"
-            app:layout_constraintRight_toRightOf="parent"
+            android:background="@color/white"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/shoppify"
-            app:layout_constraintBottom_toTopOf="@+id/totalprice"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toTopOf="@id/place_order_button"
             tools:listitem="@layout/cartitem"/>
 
-        <TextView
-            android:id="@+id/totalprice"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            tools:text="Total Price: 1500 EG"
-            android:textSize="@dimen/_25sdp"
-            android:textColor="@color/black"
-            android:gravity="center"
-            app:layout_constraintBottom_toTopOf="@+id/Buy"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
-            android:layout_marginBottom="@dimen/_8sdp"/>
+        <androidx.cardview.widget.CardView
+            android:id="@+id/place_order_button"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_40sdp"
+            app:cardBackgroundColor="@color/main"
+            app:cardCornerRadius="@dimen/_4sdp"
+            android:elevation="@dimen/_16sdp"
+            android:layout_marginHorizontal="@dimen/_32sdp"
+            android:layout_marginVertical="@dimen/_16sdp"
+            app:layout_constraintBottom_toBottomOf="parent">
 
-        <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/Buy"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="  Buy  "
-            android:textColor="@color/white"
-            android:textSize="@dimen/_30sdp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
-            android:layout_marginLeft="@dimen/_16sdp"
-            android:layout_marginRight="@dimen/_16sdp"
-            android:background="@drawable/customnav"/>
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+            <TextView
+                android:id="@+id/total_price"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                tools:text="1500.00 EGP"
+                android:textColor="@color/white"
+                android:gravity="center"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                android:padding="@dimen/_8sdp"
+                />
+            <TextView
+                android:id="@+id/buy_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="place order"
+                android:fontFamily="@font/roboto_bold"
+                android:textColor="@color/white"
+                android:textSize="@dimen/_16sdp"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                android:layout_marginStart="@dimen/_24sdp"/>
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </androidx.cardview.widget.CardView>
+
+
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>
