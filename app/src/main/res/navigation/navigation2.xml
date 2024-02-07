@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/navigation2"
+    app:startDestination="@id/homeFragment">
+
+    <fragment
+        android:id="@+id/homeFragment"
+        android:name="com.example.gocart.presentation.home.HomeFragment"
+        android:label="HomeFragment" >
+        <action
+            android:id="@+id/action_homeFragment_to_displayFragment"
+            app:destination="@id/displayFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/categoriesFragment"
+        android:name="com.example.gocart.presentation.categories.CategoriesFragment"
+        android:label="CategoriesFragment" >
+        <action
+            android:id="@+id/action_categoriesFragment_to_clothesFragment"
+            app:destination="@id/clothesFragment" />
+        <action
+            android:id="@+id/action_categoriesFragment_to_lightningFragment"
+            app:destination="@id/lightningFragment" />
+        <action
+            android:id="@+id/action_categoriesFragment_to_sportsFragment"
+            app:destination="@id/sportsFragment" />
+        <action
+            android:id="@+id/action_categoriesFragment_to_electronicsFragment"
+            app:destination="@id/electronicsFragment" />
+        <action
+            android:id="@+id/action_categoriesFragment_to_displayFragment"
+            app:destination="@id/displayFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/favoritesFragment"
+        android:name="com.example.gocart.presentation.favorites.FavoritesFragment"
+        android:label="FavoritesFragment" >
+        <action
+            android:id="@+id/action_favoritesFragment_to_displayFragment"
+            app:destination="@id/displayFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/cartFragment"
+        android:name="com.example.gocart.presentation.cart.CartFragment"
+        android:label="CartFragment" >
+        <action
+            android:id="@+id/action_cartFragment_to_displayFragment"
+            app:destination="@id/displayFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/clothesFragment"
+        android:name="com.example.gocart.presentation.clothes.ClothesFragment"
+        android:label="ClothesFragment" />
+    <fragment
+        android:id="@+id/electronicsFragment"
+        android:name="com.example.gocart.presentation.electronics.ElectronicsFragment"
+        android:label="ElectronicsFragment" />
+    <fragment
+        android:id="@+id/lightningFragment"
+        android:name="com.example.gocart.presentation.lightning.LightningFragment"
+        android:label="LightningFragment" />
+    <fragment
+        android:id="@+id/sportsFragment"
+        android:name="com.example.gocart.presentation.sports.SportsFragment"
+        android:label="SportsFragment" />
+</navigation>
