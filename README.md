@@ -22,17 +22,19 @@ Shopify app for online shopping with a user-friendly interface.
 
 📚 Kotlin
 <br>
+📚 Clean Architecture
+<br>
 📚 MVVM
+<br>
+📚 Dagger-Hilt
 <br>
 📚 Coroutines 
 <br>
 📚 Retrofit 
 <br>
-📚 Rest ApIs
-<br>
 📚 Shared Preferences
 <br>
-📚 Live Data
+📚 FLows
 <br>
 📚 Glide
 
