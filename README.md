@@ -20,24 +20,17 @@ Shopify app for online shopping with a user-friendly interface.
 
 ## $\color{#16acea}{💻 Technologies}$
 
-📚 Kotlin
+📚 <b>Programming Language:</b> $\color{#00A6ED}{Kotlin}$
 <br>
-📚 Clean Architecture
+📚 <b>Architecture:</b> $\color{#00A6ED}{Clean Architecture, MVVM}$ 
 <br>
-📚 MVVM
+📚 <b>UI & Design:</b> $\color{#00A6ED}{XML}$
 <br>
-📚 Dagger-Hilt
+📚 <b>Dependency Injection:</b> $\color{#00A6ED}{Dagger-Hilt}$   
+📚 <b>Asynchronous & Reactive Programming:</b> $\color{#00A6ED}{Coroutines, Flows}$
 <br>
-📚 Coroutines 
-<br>
-📚 Retrofit 
-<br>
-📚 Shared Preferences
-<br>
-📚 FLows
-<br>
-📚 Glide
-
+📚 <b>Networking:</b> $\color{#00A6ED}{Retrofit, Rest APIs}$    
+📚 <b>Data Storage & Persistence:</b> $\color{#00A6ED}{Shared Preferences}$ 
 
 ## $\color{#4203c9}{📷 Screenshots}$
 
